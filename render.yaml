@@ -1,0 +1,24 @@
+# Render blueprint: New → Blueprint → pick this repo. Review the plan: a persistent disk needs a paid instance type (check Render's current pricing).
+services:
+  - type: web
+    name: sokoni
+    runtime: docker
+    plan: starter
+    healthCheckPath: /api/health
+    disk:
+      name: sokoni-data
+      mountPath: /data
+      sizeGB: 1
+    envVars:
+      - key: SOKONI_DATA_DIR
+        value: /data
+      - key: BACKUP_DIR
+        value: /data/backups
+      - key: SERVER_SECRET        # decrypts the keys you save in Operations → Payment setup. COPY IT SOMEWHERE SAFE after the first deploy.
+        generateValue: true
+      - key: ADMIN_TOKEN          # the password for /admin.html
+        generateValue: true
+      - key: PUBLIC_BASE_URL      # your https address, e.g. https://sokoni.example.com (no trailing slash) — set it once the domain works
+        sync: false
+      - key: PLATFORM_COMMISSION_PERCENT   # about 7% gross nets about 5% after payment costs — see PRICING.md
+        value: "7"

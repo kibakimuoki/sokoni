@@ -1,0 +1,26 @@
+# systemd keeps Sokoni running: it starts at boot, and restarts within 3 seconds if it ever crashes.
+# Install:  cp deploy/sokoni.service /etc/systemd/system/ && systemctl daemon-reload && systemctl enable --now sokoni
+[Unit]
+Description=Sokoni marketplace
+After=network.target
+
+[Service]
+Type=simple
+User=sokoni
+Group=sokoni
+WorkingDirectory=/home/sokoni/app
+Environment=NODE_ENV=production
+Environment=SOKONI_ENV_FILE=/etc/sokoni/sokoni.env
+ExecStart=/usr/bin/node server.js
+Restart=always
+RestartSec=3
+LimitNOFILE=65535
+# the app may write only to its data and backup folders
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=read-only
+ReadWritePaths=/var/lib/sokoni /var/backups/sokoni
+
+[Install]
+WantedBy=multi-user.target

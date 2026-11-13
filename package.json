@@ -1,0 +1,23 @@
+{
+  "name": "sokoni",
+  "version": "1.0.0",
+  "description": "Global produce marketplace \u2014 no runtime dependencies (sharp is optional, for spotting duplicate photos)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node tests/store.test.js && node tests/api.test.js && node tests/payments.test.js && node tests/i18n.test.js",
+    "test:ui": "node tests/ui.test.js",
+    "strings": "node tools/extract-strings.js",
+    "check": "node tools/check-setup.js",
+    "secrets": "node tools/scan-secrets.js"
+  },
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "devDependencies": {
+    "playwright": "^1.40.0"
+  },
+  "optionalDependencies": {
+    "sharp": "^0.35.3"
+  }
+}
