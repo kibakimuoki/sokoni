@@ -1,0 +1,26 @@
+# ---- secrets and customer data: these must NEVER go to GitHub ----
+.env
+*.env
+!.env.example
+sokoni.env
+sokoni.env.txt
+data/
+sokoni-data/
+sokoni-backups/
+uploads/
+private/
+*.pem
+*.key
+id_rsa
+id_ed25519
+*.tgz
+*.tar.gz
+*.sql
+dataset-export/
+analytics-export/
+# ---- things that are rebuilt or just noise ----
+node_modules/
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db

@@ -1,0 +1,8 @@
+node_modules
+data
+sokoni-backups
+.env
+.git
+*.zip
+tests
+tools/*.png
